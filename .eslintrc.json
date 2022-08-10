@@ -34,9 +34,13 @@
         "tsx": "never",
         "ts": "never",
         "js": "never",
-        "jsx": "never"
+        "jsx": "never",
+        "png": "always"
       }
     ],
-    "no-restricted-exports": 0
+    "no-restricted-exports": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "@typescript-eslint/restrict-template-expressions": 0
   }
 }
