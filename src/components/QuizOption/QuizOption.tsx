@@ -1,7 +1,14 @@
+import styled from "@emotion/styled";
 import React, { useState } from "react";
-import Input from "../common/Input";
 
+import Input from "../common/Input";
 import Selector from "../common/Selector";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
 function QuizOption() {
   const [number, setNumber] = useState(2);
@@ -19,7 +26,7 @@ function QuizOption() {
   };
 
   return (
-    <div>
+    <Container>
       <Input
         type="number"
         label="문제 개수"
@@ -35,7 +42,7 @@ function QuizOption() {
         onChange={onSelectHandler}
         placeholder="난이도를 선택해주세요."
       />
-    </div>
+    </Container>
   );
 }
 
