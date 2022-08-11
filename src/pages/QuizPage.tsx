@@ -4,9 +4,10 @@ import quizService from "@/services/quizService";
 import QuizView from "@/components/QuizView";
 import filter from "@/utils/filter";
 import useQuizStore from "@/hooks/useQuizState";
+import ResultView from "@/components/ResultView";
 
 function QuizPage() {
-  const { count, difficulty, setQuizzes } = useQuizStore();
+  const { count, page, difficulty, setQuizzes } = useQuizStore();
 
   useEffect(() => {
     const getQuizzes = async () => {
@@ -16,11 +17,9 @@ function QuizPage() {
     getQuizzes();
   }, [count, difficulty, setQuizzes]);
 
-  return (
-    <div>
-      <QuizView />
-    </div>
-  );
+  const isQuizzing = count >= page;
+
+  return <div>{isQuizzing ? <QuizView /> : <ResultView />}</div>;
 }
 
 export default QuizPage;

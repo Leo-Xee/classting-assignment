@@ -26,7 +26,7 @@ const Control = styled.div`
   gap: 30px;
 `;
 
-function Home() {
+function HomePage() {
   const navigate = useNavigate();
 
   const onClickHandler = () => {
@@ -44,4 +44,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
