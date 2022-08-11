@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "@emotion/styled";
-import useQuizStore from "@/hooks/useQuizState";
+import useQuizStore from "@/hooks/useQuizStore";
 
 const Container = styled.div`
   display: flex;
