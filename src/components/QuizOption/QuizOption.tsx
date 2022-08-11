@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 
+import useQuizStore, { Difficulty } from "@/hooks/useQuizState";
 import Input from "../common/Input";
 import Selector from "../common/Selector";
 
@@ -11,18 +12,15 @@ const Container = styled.div`
 `;
 
 function QuizOption() {
-  const [number, setNumber] = useState(2);
-  const [selected, setSelected] = useState("");
-
+  const { count, setCount, difficulty, setDifficulty } = useQuizStore();
   const difficulties = ["Easy", "Medium", "Hard"];
 
   const onSelectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelected(e.target.value);
+    setDifficulty(e.target.value as Difficulty);
   };
 
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // TODO: 유효성 검사 추가
-    setNumber(Number(e.target.value));
+    setCount(Number(e.target.value));
   };
 
   return (
@@ -30,7 +28,7 @@ function QuizOption() {
       <Input
         type="number"
         label="문제 개수"
-        value={number}
+        value={count}
         min={2}
         max={50}
         onChange={onInputHandler}
@@ -38,7 +36,7 @@ function QuizOption() {
       <Selector
         label="문제 난이도"
         options={difficulties}
-        value={selected}
+        value={difficulty}
         onChange={onSelectHandler}
       />
     </Container>
