@@ -4,7 +4,7 @@ import React from "react";
 type Props = {
   label: string;
   options: string[];
-  value: string | number;
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
