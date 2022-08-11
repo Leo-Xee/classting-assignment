@@ -13,6 +13,7 @@ type QuizState = {
   setDifficulty: (diff: Difficulty) => void;
   setPage: (pg: number) => void;
   setQuizzes: (q: Quiz[]) => void;
+  reset: () => void;
 };
 
 const useQuizStore = create<QuizState>()(
@@ -25,6 +26,7 @@ const useQuizStore = create<QuizState>()(
     setDifficulty: (diff) => set((state) => ({ ...state, difficulty: diff })),
     setPage: (pg) => set((state) => ({ ...state, page: pg })),
     setQuizzes: (q) => set((state) => ({ ...state, quizzes: [...q] })),
+    reset: () => set({ count: 2, difficulty: "Easy", page: 1, quizzes: [] }),
   })),
 );
 
