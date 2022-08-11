@@ -20,13 +20,13 @@ const useQuizStore = create<QuizState>()(
   devtools((set) => ({
     count: 2,
     difficulty: "Easy",
-    page: 1,
+    page: 0,
     quizzes: [],
     setCount: (cnt) => set((state) => ({ ...state, count: cnt })),
     setDifficulty: (diff) => set((state) => ({ ...state, difficulty: diff })),
     setPage: (pg) => set((state) => ({ ...state, page: pg })),
     setQuizzes: (q) => set((state) => ({ ...state, quizzes: [...q] })),
-    reset: () => set({ count: 2, difficulty: "Easy", page: 1, quizzes: [] }),
+    reset: () => set({ count: 2, difficulty: "Easy", page: 0, quizzes: [] }),
   })),
 );
 
