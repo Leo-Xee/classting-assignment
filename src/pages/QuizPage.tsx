@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 
+import useSWR from "swr";
 import quizService from "@/services/quizService";
 import QuizView from "@/components/QuizView";
-import filter from "@/utils/filter";
 import useQuizStore from "@/hooks/useQuizState";
 import ResultView from "@/components/ResultView";
+import filter from "@/utils/filter";
 
 function QuizPage() {
   const { count, page, difficulty, setQuizzes } = useQuizStore();
-
-  useEffect(() => {
-    const getQuizzes = async () => {
-      const data = await quizService.getQuizzes(count, difficulty);
-      setQuizzes(filter(data));
-    };
-    getQuizzes();
-  }, [count, difficulty, setQuizzes]);
+  const { isValidating } = useSWR(
+    "quiz",
+    () => quizService.getQuizzes(count, difficulty),
+    { onSuccess: (data) => setQuizzes(filter(data)), revalidateOnFocus: false },
+  );
 
   const isQuizzing = count >= page;
+
+  if (isValidating) return <div>Loading</div>;
 
   return <div>{isQuizzing ? <QuizView /> : <ResultView />}</div>;
 }
