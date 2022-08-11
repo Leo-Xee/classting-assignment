@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Home from "@/pages/Home";
-import Quiz from "@/pages/Quiz";
+import Home from "@/pages/HomePage";
+import Quiz from "@/pages/QuizPage";
 
 const Layout = styled.section`
   margin: 0 auto;

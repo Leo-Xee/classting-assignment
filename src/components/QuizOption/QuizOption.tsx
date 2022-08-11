@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-import useQuizStore, { Difficulty } from "@/hooks/useQuizState";
+import useQuizStore, { Difficulty } from "@/hooks/useQuizStore";
 import Input from "../common/Input";
 import Selector from "../common/Selector";
 

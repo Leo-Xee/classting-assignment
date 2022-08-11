@@ -1,5 +1,5 @@
 import { QuizResponse } from "api";
-import { Difficulty } from "@/hooks/useQuizState";
+import { Difficulty } from "@/hooks/useQuizStore";
 import fetcher from "@/utils/fetcher";
 
 const quizService = {

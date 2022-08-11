@@ -3,7 +3,7 @@ import React from "react";
 import useSWR from "swr";
 import quizService from "@/services/quizService";
 import QuizView from "@/components/QuizView";
-import useQuizStore from "@/hooks/useQuizState";
+import useQuizStore from "@/hooks/useQuizStore";
 import ResultView from "@/components/ResultView";
 import filter from "@/utils/filter";
 
