@@ -40,7 +40,6 @@ function QuizOption() {
         options={difficulties}
         value={selected}
         onChange={onSelectHandler}
-        placeholder="난이도를 선택해주세요."
       />
     </Container>
   );

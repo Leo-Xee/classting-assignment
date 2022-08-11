@@ -6,7 +6,6 @@ type Props = {
   options: string[];
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  placeholder: string;
 };
 
 const Label = styled.label`
@@ -25,14 +24,11 @@ const Label = styled.label`
   }
 `;
 
-function Selector({ label, options, value, onChange, placeholder }: Props) {
+function Selector({ label, options, value, onChange }: Props) {
   return (
     <Label htmlFor={label}>
       {label}
       <select id={label} value={value} onChange={onChange}>
-        <option value="" disabled>
-          {placeholder}
-        </option>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
