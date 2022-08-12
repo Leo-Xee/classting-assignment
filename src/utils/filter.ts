@@ -1,5 +1,11 @@
 import { Quiz, QuizResponse } from "api";
 
+const decodeHTML = (text: string) => {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
+};
+
 const shuffle = (arr: string[]): string[] => {
   const shuffled = [];
 
@@ -14,13 +20,18 @@ const shuffle = (arr: string[]): string[] => {
 };
 
 const filter = (data: QuizResponse): Quiz[] => {
-  const quizzes = data.results.map((quiz) => ({
-    category: quiz.category,
-    question: quiz.question,
-    choices: shuffle([...quiz.incorrect_answers, quiz.correct_answer]),
-    correct_answer: quiz.correct_answer,
-    selected_answer: null,
-  }));
+  const quizzes = data.results.map((quiz) => {
+    return {
+      category: decodeHTML(quiz.category),
+      question: decodeHTML(quiz.question),
+      choices: shuffle([
+        ...quiz.incorrect_answers.map((v) => decodeHTML(v)),
+        decodeHTML(quiz.correct_answer),
+      ]),
+      correct_answer: decodeHTML(quiz.correct_answer),
+      selected_answer: null,
+    };
+  });
   return quizzes;
 };
 
