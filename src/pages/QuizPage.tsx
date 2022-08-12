@@ -6,6 +6,7 @@ import QuizView from "@/components/QuizView";
 import useQuizStore from "@/hooks/useQuizStore";
 import ResultView from "@/components/ResultView";
 import filter from "@/utils/filter";
+import Spinner from "@/components/common/Spinner";
 
 function QuizPage() {
   const { count, page, difficulty, setQuizzes } = useQuizStore();
@@ -17,12 +18,10 @@ function QuizPage() {
 
   const isQuizzing = count !== page;
 
-  if (isValidating) return <div>Loading</div>;
-
   return (
     <>
       {isValidating ? (
-        <div>Loading</div>
+        <Spinner />
       ) : (
         <>{isQuizzing ? <QuizView /> : <ResultView />}</>
       )}
