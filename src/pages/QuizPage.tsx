@@ -15,11 +15,19 @@ function QuizPage() {
     { onSuccess: (data) => setQuizzes(filter(data)), revalidateOnFocus: false },
   );
 
-  const isQuizzing = count >= page;
+  const isQuizzing = count !== page;
 
   if (isValidating) return <div>Loading</div>;
 
-  return <div>{isQuizzing ? <QuizView /> : <ResultView />}</div>;
+  return (
+    <>
+      {isValidating ? (
+        <div>Loading</div>
+      ) : (
+        <>{isQuizzing ? <QuizView /> : <ResultView />}</>
+      )}
+    </>
+  );
 }
 
 export default QuizPage;
