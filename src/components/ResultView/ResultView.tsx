@@ -1,0 +1,68 @@
+import React from "react";
+
+import { useNavigate } from "react-router-dom";
+import Button from "@/components/common/Button";
+import useQuizStore from "@/hooks/useQuizStore";
+import * as S from "./ResultView.style";
+import Chart from "../Chart";
+import calcResult from "@/utils/calcResult";
+
+function ResultView() {
+  const { reset, setPage, quizzes } = useQuizStore();
+  const navigate = useNavigate();
+
+  const { win, lose } = calcResult(quizzes);
+
+  const handleRestart = () => {
+    setPage(0);
+  };
+
+  const handleReset = () => {
+    navigate("/");
+    reset();
+  };
+
+  return (
+    <S.Container>
+      <S.Heading>퀴즈 결과</S.Heading>
+      <S.DashBoard>
+        <Chart width="220px" result={[1, 0]} />
+        <S.Answer>
+          <S.Content>
+            <S.Label>맞힌 문제</S.Label>
+            <S.Value>{win}개</S.Value>
+          </S.Content>
+          <S.Content>
+            <S.Label>틀린 문제</S.Label>
+            <S.Value>{lose}개</S.Value>
+          </S.Content>
+        </S.Answer>
+        <S.Content>
+          <S.Label>퀴즈 풀이에 걸린 시간</S.Label>
+          <S.Value>20초</S.Value>
+        </S.Content>
+        <Button width="50%" styleType="text" onClick={handleRestart}>
+          다시하기
+        </Button>
+      </S.DashBoard>
+      <S.ButtonContainer>
+        <Button
+          width="calc(50% - 5px)"
+          styleType="border"
+          onClick={handleReset}
+        >
+          오답노트
+        </Button>
+        <Button
+          width="calc(50% - 5px)"
+          styleType="primary"
+          onClick={handleReset}
+        >
+          홈으로
+        </Button>
+      </S.ButtonContainer>
+    </S.Container>
+  );
+}
+
+export default ResultView;
