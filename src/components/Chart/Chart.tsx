@@ -19,7 +19,7 @@ type Props = {
 
 function Chart({ result, width }: Props) {
   const [win, lose] = result;
-  const percent = (win / (win + lose)) * 100;
+  const percent = Math.floor((win / (win + lose)) * 100);
 
   const data: ChartData<"doughnut"> = {
     datasets: [
