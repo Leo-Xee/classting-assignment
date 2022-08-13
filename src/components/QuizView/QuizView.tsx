@@ -7,20 +7,24 @@ import * as S from "./QuizView.style";
 
 function QuizView() {
   const [isSelected, setIsSelected] = useState(false);
-  const { page, setPage, quizzes, setAnswer } = useQuizStore();
+  const { count, page, setPage, quizzes, setAnswer, setStartTime, setEndTime } =
+    useQuizStore();
 
   useEffect(() => {
+    if (page === 0) setStartTime(Date.now());
     setIsSelected(false);
-  }, [page]);
-
-  const handleClick = (choice: string) => {
-    setIsSelected(true);
-    setAnswer(page, choice);
-  };
+  }, [page, setStartTime]);
 
   const currentQuiz = quizzes[page];
   const answer = quizzes[page].correct_answer;
   const selected = quizzes[page].selected_answer;
+  const isLastQuiz = page === count - 1;
+
+  const handleClick = (choice: string) => {
+    setIsSelected(true);
+    setAnswer(page, choice);
+    if (isLastQuiz) setEndTime(Date.now());
+  };
 
   return (
     <S.Container>
@@ -47,7 +51,7 @@ function QuizView() {
         disabled={!isSelected}
         onClick={() => setPage(page + 1)}
       >
-        다음 문제로
+        {isLastQuiz ? "결과 보기" : "다음 문제"}
       </Button>
     </S.Container>
   );

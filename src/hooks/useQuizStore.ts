@@ -6,10 +6,14 @@ import { immer } from "zustand/middleware/immer";
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 type QuizState = {
+  startTime: number;
+  endTime: number;
   count: number;
   difficulty: Difficulty;
   page: number;
   quizzes: Quiz[];
+  setStartTime: (time: number) => void;
+  setEndTime: (time: number) => void;
   setCount: (cnt: number) => void;
   setDifficulty: (diff: Difficulty) => void;
   setPage: (pg: number) => void;
@@ -21,10 +25,20 @@ type QuizState = {
 const useQuizStore = create<QuizState>()(
   devtools(
     immer((set) => ({
+      startTime: 0,
+      endTime: 0,
       count: 2,
       difficulty: "Easy",
       page: 0,
       quizzes: [],
+      setStartTime: (time) =>
+        set((state) => {
+          state.startTime = time;
+        }),
+      setEndTime: (time) =>
+        set((state) => {
+          state.endTime = time;
+        }),
       setCount: (cnt) =>
         set((state) => {
           state.count = cnt;
@@ -45,7 +59,15 @@ const useQuizStore = create<QuizState>()(
         set((state) => {
           state.quizzes[id].selected_answer = ans;
         }),
-      reset: () => set({ count: 2, difficulty: "Easy", page: 0, quizzes: [] }),
+      reset: () =>
+        set({
+          startTime: 0,
+          endTime: 0,
+          count: 2,
+          difficulty: "Easy",
+          page: 0,
+          quizzes: [],
+        }),
     })),
   ),
 );

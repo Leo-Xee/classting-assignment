@@ -8,10 +8,11 @@ import Chart from "../Chart";
 import calcResult from "@/utils/calcResult";
 
 function ResultView() {
-  const { reset, setPage, quizzes } = useQuizStore();
+  const { reset, setPage, quizzes, startTime, endTime } = useQuizStore();
   const navigate = useNavigate();
 
   const { win, lose } = calcResult(quizzes);
+  const duration = ((endTime - startTime) / 1000).toFixed(1);
 
   const handleRestart = () => {
     setPage(0);
@@ -26,7 +27,7 @@ function ResultView() {
     <S.Container>
       <S.Heading>퀴즈 결과</S.Heading>
       <S.DashBoard>
-        <Chart width="220px" result={[1, 0]} />
+        <Chart width="220px" result={[win, lose]} />
         <S.Answer>
           <S.Content>
             <S.Label>맞힌 문제</S.Label>
@@ -39,7 +40,7 @@ function ResultView() {
         </S.Answer>
         <S.Content>
           <S.Label>퀴즈 풀이에 걸린 시간</S.Label>
-          <S.Value>20초</S.Value>
+          <S.Value>{duration}초</S.Value>
         </S.Content>
         <Button width="50%" styleType="text" onClick={handleRestart}>
           다시하기
