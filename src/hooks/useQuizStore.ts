@@ -6,19 +6,21 @@ import { immer } from "zustand/middleware/immer";
 export type Difficulty = "Easy" | "Medium" | "Hard";
 
 type QuizState = {
+  isReadMode: boolean;
   startTime: number;
   endTime: number;
   count: number;
   difficulty: Difficulty;
   page: number;
   quizzes: Quiz[];
+  setIsReadMode: (bool: boolean) => void;
   setStartTime: (time: number) => void;
   setEndTime: (time: number) => void;
   setCount: (cnt: number) => void;
   setDifficulty: (diff: Difficulty) => void;
-  setPage: (pg: number) => void;
-  setQuizzes: (q: Quiz[]) => void;
-  setAnswer: (id: number, ans: string) => void;
+  setPage: (pageNumber: number) => void;
+  setQuizzes: (quizList: Quiz[]) => void;
+  setAnswer: (id: number, answer: string) => void;
   resetAnswers: () => void;
   reset: () => void;
 };
@@ -26,12 +28,17 @@ type QuizState = {
 const useQuizStore = create<QuizState>()(
   devtools(
     immer((set) => ({
+      isReadMode: false,
       startTime: 0,
       endTime: 0,
       count: 2,
       difficulty: "Easy",
       page: 0,
       quizzes: [],
+      setIsReadMode: (bool) =>
+        set((state) => {
+          state.isReadMode = bool;
+        }),
       setStartTime: (time) =>
         set((state) => {
           state.startTime = time;
@@ -48,17 +55,17 @@ const useQuizStore = create<QuizState>()(
         set((state) => {
           state.difficulty = diff;
         }),
-      setPage: (pg) =>
+      setPage: (pageNumber) =>
         set((state) => {
-          state.page = pg;
+          state.page = pageNumber;
         }),
-      setQuizzes: (q) =>
+      setQuizzes: (quizList) =>
         set((state) => {
-          state.quizzes = q;
+          state.quizzes = quizList;
         }),
-      setAnswer: (id, ans) =>
+      setAnswer: (id, answer) =>
         set((state) => {
-          state.quizzes[id].selected_answer = ans;
+          state.quizzes[id].selected_answer = answer;
         }),
       resetAnswers: () =>
         set((state) => {
@@ -68,6 +75,7 @@ const useQuizStore = create<QuizState>()(
         }),
       reset: () =>
         set({
+          isReadMode: false,
           startTime: 0,
           endTime: 0,
           count: 2,

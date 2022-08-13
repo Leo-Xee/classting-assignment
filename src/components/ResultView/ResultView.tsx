@@ -17,6 +17,7 @@ function ResultView() {
     endTime,
     setStartTime,
     setEndTime,
+    setIsReadMode,
   } = useQuizStore();
   const navigate = useNavigate();
 
@@ -24,10 +25,16 @@ function ResultView() {
   const duration = ((endTime - startTime) / 1000).toFixed(1);
 
   const handleRestart = () => {
+    setIsReadMode(false);
     setPage(0);
     resetAnswers();
     setStartTime(0);
     setEndTime(0);
+  };
+
+  const handleReadMode = () => {
+    setPage(0);
+    setIsReadMode(true);
   };
 
   const handleReset = () => {
@@ -62,7 +69,7 @@ function ResultView() {
         <Button
           width="calc(50% - 5px)"
           styleType="border"
-          onClick={handleReset}
+          onClick={handleReadMode}
         >
           오답노트
         </Button>

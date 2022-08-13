@@ -7,13 +7,21 @@ import * as S from "./QuizView.style";
 
 function QuizView() {
   const [isSelected, setIsSelected] = useState(false);
-  const { count, page, setPage, quizzes, setAnswer, setStartTime, setEndTime } =
-    useQuizStore();
+  const {
+    count,
+    page,
+    setPage,
+    quizzes,
+    setAnswer,
+    setStartTime,
+    setEndTime,
+    isReadMode,
+  } = useQuizStore();
 
   useEffect(() => {
-    if (page === 0) setStartTime(Date.now());
+    if (page === 0 && !isReadMode) setStartTime(Date.now());
     setIsSelected(false);
-  }, [page, setStartTime]);
+  }, [page, setStartTime, isReadMode]);
 
   const currentQuiz = quizzes[page];
   const answer = quizzes[page].correct_answer;
@@ -35,7 +43,7 @@ function QuizView() {
           {currentQuiz.choices.map((choice, idx) => (
             <li key={idx}>
               <S.Choice
-                disabled={isSelected}
+                disabled={isReadMode ? true : isSelected}
                 isSelectedChoice={choice === selected}
                 isAnswer={choice === answer}
                 onClick={() => handleClick(choice)}
@@ -48,7 +56,7 @@ function QuizView() {
       </S.QuizBox>
       <Button
         styleType="primary"
-        disabled={!isSelected}
+        disabled={isReadMode ? false : !isSelected}
         onClick={() => setPage(page + 1)}
       >
         {isLastQuiz ? "결과 보기" : "다음 문제"}
