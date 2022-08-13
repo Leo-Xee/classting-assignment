@@ -7,8 +7,10 @@ export const Container = styled.div<{ width: string }>`
 
 export const Percent = styled.div`
   position: absolute;
-  font-size: 2.2rem;
+  width: 70px;
+  text-align: center;
+  font-size: 2.4rem;
   font-weight: 900;
   top: 45%;
-  left: 40%;
+  left: calc(50% - 35px);
 `;
