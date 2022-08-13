@@ -8,7 +8,16 @@ import Chart from "../Chart";
 import calcResult from "@/utils/calcResult";
 
 function ResultView() {
-  const { reset, setPage, quizzes, startTime, endTime } = useQuizStore();
+  const {
+    reset,
+    setPage,
+    quizzes,
+    resetAnswers,
+    startTime,
+    endTime,
+    setStartTime,
+    setEndTime,
+  } = useQuizStore();
   const navigate = useNavigate();
 
   const { win, lose } = calcResult(quizzes);
@@ -16,6 +25,9 @@ function ResultView() {
 
   const handleRestart = () => {
     setPage(0);
+    resetAnswers();
+    setStartTime(0);
+    setEndTime(0);
   };
 
   const handleReset = () => {

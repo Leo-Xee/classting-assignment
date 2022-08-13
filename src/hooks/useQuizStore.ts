@@ -19,6 +19,7 @@ type QuizState = {
   setPage: (pg: number) => void;
   setQuizzes: (q: Quiz[]) => void;
   setAnswer: (id: number, ans: string) => void;
+  resetAnswers: () => void;
   reset: () => void;
 };
 
@@ -58,6 +59,12 @@ const useQuizStore = create<QuizState>()(
       setAnswer: (id, ans) =>
         set((state) => {
           state.quizzes[id].selected_answer = ans;
+        }),
+      resetAnswers: () =>
+        set((state) => {
+          state.quizzes.forEach((quiz) => {
+            quiz.selected_answer = null;
+          });
         }),
       reset: () =>
         set({

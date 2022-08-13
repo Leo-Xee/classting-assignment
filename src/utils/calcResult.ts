@@ -7,8 +7,9 @@ const calcResult = (quizData: Quiz[]) => {
   quizData.forEach((quiz) => {
     if (quiz.correct_answer === quiz.selected_answer) {
       win += 1;
+    } else {
+      lose += 1;
     }
-    lose += 1;
   });
   return { win, lose };
 };
