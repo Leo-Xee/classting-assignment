@@ -34,7 +34,10 @@ const ButtonBase = styled.button<Props>`
   }};
 
   &:active {
-    background-color: ${({ mainColor }) => darken(0.03, `${mainColor}`)};
+    background-color: ${({ styleType, mainColor }) => {
+      if (styleType === "primary") return darken(0.03, `${mainColor}`);
+      return "unset";
+    }};
   }
 
   &:disabled {
