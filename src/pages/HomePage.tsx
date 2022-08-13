@@ -38,7 +38,9 @@ function HomePage() {
       <Title />
       <Control>
         <QuizOption />
-        <Button onClick={onClickHandler}>시작하기</Button>
+        <Button styleType="primary" onClick={onClickHandler}>
+          시작하기
+        </Button>
       </Control>
     </Container>
   );

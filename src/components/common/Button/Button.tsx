@@ -1,25 +1,40 @@
 import styled from "@emotion/styled";
 import { darken } from "polished";
-import React, { CSSProperties } from "react";
+import React from "react";
 
-type Props = CSSProperties & {
+type Props = {
   children: React.ReactNode;
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
+  width?: string;
+  styleType: "primary" | "border" | "text";
+  mainColor?: string;
 };
 
 const ButtonBase = styled.button<Props>`
   width: ${({ width }) => width};
   height: 65px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 10px;
   font-size: 2.4rem;
-  font-weight: 900;
-  color: ${({ color }) => color};
+  font-weight: 500;
+
+  background-color: ${({ styleType, mainColor }) => {
+    if (styleType === "primary") return mainColor;
+    return "#fff";
+  }};
+
+  color: ${({ styleType, mainColor }) => {
+    if (styleType === "primary") return "#fff";
+    return mainColor;
+  }};
+
+  border: ${({ styleType, mainColor }) => {
+    if (styleType === "border") return `2px solid ${mainColor}`;
+    return "unset";
+  }};
 
   &:active {
-    background-color: ${({ backgroundColor }) =>
-      darken(0.03, `${backgroundColor}`)};
+    background-color: ${({ mainColor }) => darken(0.03, `${mainColor}`)};
   }
 
   &:disabled {
@@ -32,8 +47,8 @@ function Button({
   onClick,
   disabled,
   width = "100%",
-  color = "#fff",
-  backgroundColor = "#00C896",
+  styleType,
+  mainColor = "#00C896",
 }: Props) {
   return (
     <ButtonBase
@@ -41,8 +56,8 @@ function Button({
       onClick={onClick}
       disabled={disabled}
       width={width}
-      color={color}
-      backgroundColor={backgroundColor}
+      styleType={styleType}
+      mainColor={mainColor}
     >
       {children}
     </ButtonBase>

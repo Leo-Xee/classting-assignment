@@ -42,7 +42,11 @@ function QuizView() {
           ))}
         </ul>
       </S.QuizBox>
-      <Button disabled={!isSelected} onClick={() => setPage(page + 1)}>
+      <Button
+        styleType="primary"
+        disabled={!isSelected}
+        onClick={() => setPage(page + 1)}
+      >
         다음 문제로
       </Button>
     </S.Container>
