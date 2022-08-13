@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 const style = () => css`
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
   /* reset.css */
   * {
@@ -58,7 +58,7 @@ const style = () => css`
     list-style: none;
   }
   * {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
   }
 `;
 
