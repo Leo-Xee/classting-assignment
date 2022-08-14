@@ -15,11 +15,11 @@ function QuizOption() {
   const { count, setCount, difficulty, setDifficulty } = useQuizStore();
   const difficulties = ["Easy", "Medium", "Hard"];
 
-  const onSelectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDifficulty(e.target.value as Difficulty);
   };
 
-  const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCount(Number(e.target.value));
   };
 
@@ -31,13 +31,13 @@ function QuizOption() {
         value={count}
         min={2}
         max={50}
-        onChange={onInputHandler}
+        onChange={handleInput}
       />
       <Selector
         label="문제 난이도"
         options={difficulties}
         value={difficulty}
-        onChange={onSelectHandler}
+        onChange={handleSelect}
       />
     </Container>
   );

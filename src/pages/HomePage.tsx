@@ -29,7 +29,7 @@ const Control = styled.div`
 function HomePage() {
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
+  const handleClick = () => {
     navigate("/quiz");
   };
 
@@ -38,7 +38,7 @@ function HomePage() {
       <Title />
       <Control>
         <QuizOption />
-        <Button styleType="primary" onClick={onClickHandler}>
+        <Button styleType="primary" onClick={handleClick}>
           시작하기
         </Button>
       </Control>
