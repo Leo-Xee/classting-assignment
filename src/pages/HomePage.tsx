@@ -13,14 +13,14 @@ const Container = styled.div`
   flex-direction: column;
 
   & h1 {
-    flex: 7;
+    flex: 8;
     display: flex;
     justify-content: center;
   }
 `;
 
 const Control = styled.div`
-  flex: 3;
+  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 30px;
