@@ -38,10 +38,10 @@ function QuizView() {
     <S.Container>
       <S.QuizBox>
         <ProgressBar />
-        <S.Question>{currentQuiz.question}</S.Question>
+        <S.Question aria-label="퀴즈 문제">{currentQuiz.question}</S.Question>
         <ul>
           {currentQuiz.choices.map((choice, idx) => (
-            <li key={idx}>
+            <li key={idx} aria-label={`${idx + 1}번 선택지`}>
               <S.Choice
                 disabled={isReadMode ? true : isSelected}
                 isSelectedChoice={choice === selected}

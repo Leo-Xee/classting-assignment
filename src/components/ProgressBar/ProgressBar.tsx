@@ -33,7 +33,7 @@ function ProgressBar() {
   const percent = (page / count) * 100;
 
   return (
-    <Container>
+    <Container aria-label="퀴즈 진행상태">
       {page} / {count}
       <ProgressContainer>
         <Progress percent={percent} />
