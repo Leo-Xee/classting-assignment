@@ -1,5 +1,7 @@
 # Classting Assignment
 
+간단한 퀴즈 웹 애플리케이션
+
 ## 🚀 실행 방법 ( [Deploy](http://classting-assignment-pi.vercel.app/) )
 
 ### 프로젝트 클론 및 의존성 설치
