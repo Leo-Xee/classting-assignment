@@ -33,7 +33,10 @@ function Chart({ result, width }: Props) {
   };
 
   return (
-    <S.Container width={width}>
+    <S.Container
+      width={width}
+      aria-label={`${percent}% 정답률을 보여주는 원형차트`}
+    >
       <S.Percent>{percent}%</S.Percent>
       <Doughnut data={data} />
     </S.Container>
