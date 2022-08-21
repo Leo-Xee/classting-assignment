@@ -1,30 +1,18 @@
-import { Quiz } from "api";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-
-export type Difficulty = "Easy" | "Medium" | "Hard";
 
 type QuizState = {
   isReadMode: boolean;
   startTime: number;
   endTime: number;
-  count: number;
-  difficulty: Difficulty;
   page: number;
-  quizzes: Quiz[];
   setIsReadMode: (bool: boolean) => void;
   setStartTime: (time: number) => void;
   setEndTime: (time: number) => void;
-  setCount: (cnt: number) => void;
-  setDifficulty: (diff: Difficulty) => void;
   setPage: (pageNumber: number) => void;
-  setQuizzes: (quizList: Quiz[]) => void;
-  setAnswer: (id: number, answer: string) => void;
-  restartQuiz: () => void;
   startReadMode: () => void;
-  resetAnswers: () => void;
-  reset: () => void;
+  resetQuiz: () => void;
 };
 
 const useQuizStore = create<QuizState>()(
@@ -33,10 +21,7 @@ const useQuizStore = create<QuizState>()(
       isReadMode: false,
       startTime: 0,
       endTime: 0,
-      count: 2,
-      difficulty: "Easy",
       page: 0,
-      quizzes: [],
       setIsReadMode: (bool) =>
         set((state) => {
           state.isReadMode = bool;
@@ -49,56 +34,21 @@ const useQuizStore = create<QuizState>()(
         set((state) => {
           state.endTime = time;
         }),
-      setCount: (cnt) =>
-        set((state) => {
-          state.count = cnt;
-        }),
-      setDifficulty: (diff) =>
-        set((state) => {
-          state.difficulty = diff;
-        }),
       setPage: (pageNumber) =>
         set((state) => {
           state.page = pageNumber;
-        }),
-      setQuizzes: (quizList) =>
-        set((state) => {
-          state.quizzes = quizList;
-        }),
-      setAnswer: (id, answer) =>
-        set((state) => {
-          state.quizzes[id].selected_answer = answer;
-        }),
-      restartQuiz: () =>
-        set((state) => {
-          state.isReadMode = false;
-          state.page = 0;
-          state.startTime = 0;
-          state.endTime = 0;
-          state.quizzes.forEach((quiz) => {
-            quiz.selected_answer = null;
-          });
         }),
       startReadMode: () =>
         set((state) => {
           state.page = 0;
           state.isReadMode = true;
         }),
-      resetAnswers: () =>
-        set((state) => {
-          state.quizzes.forEach((quiz) => {
-            quiz.selected_answer = null;
-          });
-        }),
-      reset: () =>
+      resetQuiz: () =>
         set({
           isReadMode: false,
           startTime: 0,
           endTime: 0,
-          count: 2,
-          difficulty: "Easy",
           page: 0,
-          quizzes: [],
         }),
     })),
   ),

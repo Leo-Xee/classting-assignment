@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Quiz } from "api";
 import QuizView from "@/components/QuizView";
-import useQuizStore from "@/hooks/useQuizStore";
+import useOptionStore from "@/hooks/useOptionStore";
 
 const quiz: Quiz[] = [
   {
@@ -17,7 +17,7 @@ const quiz: Quiz[] = [
 
 describe("<QuizView />", () => {
   beforeEach(() => {
-    const state = useQuizStore.getState();
+    const state = useOptionStore.getState();
     state.setQuizzes(quiz);
   });
 

@@ -6,17 +6,19 @@ import useQuizStore from "@/hooks/useQuizStore";
 import * as S from "./ResultView.style";
 import Chart from "@/components/Chart";
 import calcResult from "@/utils/calcResult";
+import useOptionStore from "@/hooks/useOptionStore";
 
 function ResultView() {
   const navigate = useNavigate();
-  const { reset, quizzes, startTime, endTime, restartQuiz, startReadMode } =
-    useQuizStore();
+  const { startTime, endTime, startReadMode, resetQuiz } = useQuizStore();
+  const { quizzes, resetSelectedAnswers } = useOptionStore();
 
   const { win, lose } = calcResult(quizzes);
   const duration = ((endTime - startTime) / 1000).toFixed(1);
 
   const handleRestart = () => {
-    restartQuiz();
+    resetQuiz();
+    resetSelectedAnswers();
   };
 
   const handleReadMode = () => {
@@ -25,7 +27,7 @@ function ResultView() {
 
   const handleReset = () => {
     navigate("/");
-    reset();
+    resetQuiz();
   };
 
   return (

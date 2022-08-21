@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import useQuizStore from "@/hooks/useQuizStore";
+import useOptionStore from "@/hooks/useOptionStore";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ const Progress = styled.div<{ percent: number }>`
 `;
 
 function ProgressBar() {
-  const { page, count } = useQuizStore();
+  const { page } = useQuizStore();
+  const { count } = useOptionStore();
 
   const percent = (page / count) * 100;
 

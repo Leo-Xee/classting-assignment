@@ -4,6 +4,7 @@ import { render, screen } from "@testing-library/react";
 import { Quiz } from "api";
 import useQuizStore from "@/hooks/useQuizStore";
 import ResultView from "@/components/ResultView";
+import useOptionStore from "@/hooks/useOptionStore";
 
 const quiz: Quiz[] = [
   {
@@ -25,11 +26,12 @@ jest.mock("react-router-dom", () => ({
 
 describe("<ResultView />", () => {
   beforeEach(() => {
-    const state = useQuizStore.getState();
-    state.setQuizzes(quiz);
-    state.setAnswer(0, "Oscar");
-    state.setStartTime(1660562569209);
-    state.setEndTime(1660562582887);
+    const quizState = useQuizStore.getState();
+    const optionState = useOptionStore.getState();
+    optionState.setQuizzes(quiz);
+    optionState.setAnswer(0, "Oscar");
+    quizState.setStartTime(1660562569209);
+    quizState.setEndTime(1660562582887);
   });
 
   it("기본 엘리먼트들을 보여준다.", () => {

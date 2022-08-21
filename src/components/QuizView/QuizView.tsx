@@ -4,19 +4,13 @@ import useQuizStore from "@/hooks/useQuizStore";
 import Button from "@/components/common/Button";
 import ProgressBar from "../ProgressBar";
 import * as S from "./QuizView.style";
+import useOptionStore from "@/hooks/useOptionStore";
 
 function QuizView() {
   const [isSelected, setIsSelected] = useState(false);
-  const {
-    count,
-    page,
-    setPage,
-    quizzes,
-    setAnswer,
-    setStartTime,
-    setEndTime,
-    isReadMode,
-  } = useQuizStore();
+  const { count, quizzes, setAnswer } = useOptionStore();
+  const { page, setPage, setStartTime, setEndTime, isReadMode } =
+    useQuizStore();
 
   useEffect(() => {
     if (page === 0 && !isReadMode) setStartTime(Date.now());

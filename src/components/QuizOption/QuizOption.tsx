@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-import useQuizStore, { Difficulty } from "@/hooks/useQuizStore";
+import useOptionStore, { Difficulty } from "@/hooks/useOptionStore";
 import Input from "../common/Input";
 import Selector from "../common/Selector";
 
@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 function QuizOption() {
-  const { count, setCount, difficulty, setDifficulty } = useQuizStore();
+  const { count, setCount, difficulty, setDifficulty } = useOptionStore();
   const difficulties = ["Easy", "Medium", "Hard"];
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
