@@ -21,6 +21,8 @@ type QuizState = {
   setPage: (pageNumber: number) => void;
   setQuizzes: (quizList: Quiz[]) => void;
   setAnswer: (id: number, answer: string) => void;
+  restartQuiz: () => void;
+  startReadMode: () => void;
   resetAnswers: () => void;
   reset: () => void;
 };
@@ -66,6 +68,21 @@ const useQuizStore = create<QuizState>()(
       setAnswer: (id, answer) =>
         set((state) => {
           state.quizzes[id].selected_answer = answer;
+        }),
+      restartQuiz: () =>
+        set((state) => {
+          state.isReadMode = false;
+          state.page = 0;
+          state.startTime = 0;
+          state.endTime = 0;
+          state.quizzes.forEach((quiz) => {
+            quiz.selected_answer = null;
+          });
+        }),
+      startReadMode: () =>
+        set((state) => {
+          state.page = 0;
+          state.isReadMode = true;
         }),
       resetAnswers: () =>
         set((state) => {

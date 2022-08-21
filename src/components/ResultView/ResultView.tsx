@@ -1,40 +1,26 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
+
 import Button from "@/components/common/Button";
 import useQuizStore from "@/hooks/useQuizStore";
 import * as S from "./ResultView.style";
-import Chart from "../Chart";
+import Chart from "@/components/Chart";
 import calcResult from "@/utils/calcResult";
 
 function ResultView() {
-  const {
-    reset,
-    setPage,
-    quizzes,
-    resetAnswers,
-    startTime,
-    endTime,
-    setStartTime,
-    setEndTime,
-    setIsReadMode,
-  } = useQuizStore();
   const navigate = useNavigate();
+  const { reset, quizzes, startTime, endTime, restartQuiz, startReadMode } =
+    useQuizStore();
 
   const { win, lose } = calcResult(quizzes);
   const duration = ((endTime - startTime) / 1000).toFixed(1);
 
   const handleRestart = () => {
-    setIsReadMode(false);
-    setPage(0);
-    resetAnswers();
-    setStartTime(0);
-    setEndTime(0);
+    restartQuiz();
   };
 
   const handleReadMode = () => {
-    setPage(0);
-    setIsReadMode(true);
+    startReadMode();
   };
 
   const handleReset = () => {
