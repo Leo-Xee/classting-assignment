@@ -10,17 +10,11 @@ function QuizPage() {
   const { count, page, difficulty } = useQuizStore();
   const { isValidating } = useGetQuizzes(count, difficulty);
 
+  if (isValidating) return <Spinner />;
+
   const isQuizzing = count !== page;
 
-  return (
-    <>
-      {isValidating ? (
-        <Spinner />
-      ) : (
-        <>{isQuizzing ? <QuizView /> : <ResultView />}</>
-      )}
-    </>
-  );
+  return isQuizzing ? <QuizView /> : <ResultView />;
 }
 
 export default QuizPage;
