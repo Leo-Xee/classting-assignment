@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 
@@ -8,19 +9,26 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Label = styled.label`
+export const LabelBase = css`
   display: flex;
   flex-direction: column;
   gap: 5px;
   font-size: 2rem;
   font-weight: 900;
+`;
+export const InputBase = css`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+`;
+
+const Label = styled.label`
+  ${LabelBase};
 
   & select {
-    width: 100%;
-    padding: 10px;
+    ${InputBase};
     appearance: none;
-    border: 1px solid black;
-    border-radius: 5px;
   }
 `;
 
