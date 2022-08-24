@@ -5,41 +5,41 @@ import Button from "@/components/common/Button";
 import ProgressBar from "../ProgressBar";
 import * as S from "./QuizView.style";
 import useOptionStore from "@/hooks/useOptionStore";
+import getCurrentQuiz from "@/utils/getCurrentQuiz";
 
 function QuizView() {
   const [isSelected, setIsSelected] = useState(false);
+
   const { count, quizzes, setAnswer } = useOptionStore();
-  const { page, setPage, setStartTime, setEndTime, isReadMode } =
-    useQuizStore();
+  const { page, setPage, setStartTime, setEndTime, isReadMode } = useQuizStore();
+
+  const { question, choices, correctAnswer, selectedAnswer } = getCurrentQuiz(page, quizzes);
 
   useEffect(() => {
     if (page === 0 && !isReadMode) setStartTime(Date.now());
     setIsSelected(false);
   }, [page, setStartTime, isReadMode]);
 
-  const currentQuiz = quizzes[page];
-  const answer = quizzes[page].correctAnswer;
-  const selected = quizzes[page].selectedAnswer;
   const isLastQuiz = page === count - 1;
 
   const handleClick = (choice: string) => {
+    if (isLastQuiz) setEndTime(Date.now());
     setIsSelected(true);
     setAnswer(page, choice);
-    if (isLastQuiz) setEndTime(Date.now());
   };
 
   return (
     <S.Container>
       <S.QuizBox>
         <ProgressBar />
-        <S.Question aria-label="퀴즈 문제">{currentQuiz.question}</S.Question>
+        <S.Question aria-label="퀴즈 문제">{question}</S.Question>
         <ul>
-          {currentQuiz.choices.map((choice, idx) => (
+          {choices.map((choice, idx) => (
             <li key={idx} aria-label={`${idx + 1}번 선택지`}>
               <S.Choice
                 disabled={isReadMode ? true : isSelected}
-                isSelectedChoice={choice === selected}
-                isAnswer={choice === answer}
+                isSelectedChoice={choice === selectedAnswer}
+                isAnswer={choice === correctAnswer}
                 onClick={() => handleClick(choice)}
               >
                 {choice}
