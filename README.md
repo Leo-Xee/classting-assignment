@@ -50,16 +50,18 @@
 
 ### ✅ QuizView 컴포넌트 리팩토링 - [코드](https://github.com/Leo-Xee/classting-assignment/commit/f6a2b630bc3c0bb387949748338cf9275ac3605b)
 
-QuizView 컴포넌트에서 현재 페이지를 위한 퀴즈 데이터를 불러오는 로직이 읽기 좋지 않았습니다. 그래서 이 로직을 `getCurrentQuiz` 라는 함수 내부에서 처리하도록 했습니다.
+- `QuizView` 컴포넌트에서 현재 페이지의 퀴즈 데이터를 일일이 변수에 할당해서 사용하는 로직이 읽기 좋지 않았습니다. 그래서 이를 `getCurrentQuiz` 라는 함수 내부에서 처리하고 해당 함수를 호출해서 사용하도록 변경했습니다.
 
-### ✅ 엘리먼트에 textContent가 있는 경우에 aria-labelledby 사용하도록 변경 - [코드]()
+### ✅ 엘리먼트에 textContent가 있는 경우에 aria-labelledby 사용하도록 변경 - [코드](https://github.com/Leo-Xee/classting-assignment/commit/44effb133b9b797a2321c4b8a78ac98de60255ff)
 
-스크린리더 사용자에게 추가적인 정보를 주기 위해서 `aria-label`을 사용했는데 해당 엘리먼트에 textContent가 있을 경우에 스크린리더는 내용은 무시하고 `aria-label`만을 사용자에게 알려준다. 이 문제를 해결하고자 `aria-label` 대신 `aria-labelledby`를 사용하도록 변경했다.
+- 스크린리더 사용자에게 추가적인 정보를 주기 위해서 `aria-label`을 사용했었는데 엘리먼트에 `textContent`가 있을 경우에 스크린리더는 내용을 무시하고 `aria-label`의 값만을 사용자에게 알려주는 문제가 있었습니다. 이 문제를 해결하고자 `aria-label` 대신 `aria-labelledby`를 사용하도록 변경했습니다.
 
-### ✅ 중복되는 스타일코드를 Emotion의 Composition을 사용해서 줄이기 - [코드]()
+### ✅ 스타일 코드의 중복을 Emotion의 Composition으로 제거 - [코드](https://github.com/Leo-Xee/classting-assignment/commit/fd30b6290e59180d3a2dad8be7ebb8a918c7eeb4)
 
-Selector 컴포넌트와 Input 컴포넌트의 스타일 관련 코드가 거의 유사했지만 일일이 하드코딩되어 있었습니다. 그래서 Emotion의 Composition 기능을 사용해서 중복을 제거했습니다.
+- `Selector` 컴포넌트와 `Input` 컴포넌트의 스타일 관련 코드가 거의 유사했지만 일일이 하드코딩되어 있었습니다. 그래서 Emotion의 Composition 기능을 사용해서 중복을 제거했습니다.
 
-### ✅ HTML 엘리먼트의 기본 속성들을 Wrapper 컴포넌트의 Props가 모두 반영하도록 변경 - [코드]()
+### ✅ HTML 엘리먼트의 기본 속성들을 Wrapper 컴포넌트의 Props가 모두 반영하도록 변경 - [코드](https://github.com/Leo-Xee/classting-assignment/commit/50b17ad52314e91f3f942eed721dcfca031f202b)
 
-Input과 Selector
+- Native HTML 엘리먼트를 직접 감싸는 컴포넌트의 `Props`를 임의로 제한해서 선언하는 바람에 엘리먼트의 모든 속성을 제어할 수가 없었고 자동완성도 기대할 수가 없는 문제가 있었습니다. 그래서 엘리먼트의 기본 타입을 인터섹션을 사용해 `Props`에 추가했습니다.
+
+
