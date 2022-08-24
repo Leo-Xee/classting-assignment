@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/components/common/Button";
 import useQuizStore from "@/hooks/useQuizStore";
 import * as S from "./ResultView.style";
-import Chart from "@/components/Chart";
+import DoughnutChart from "@/components/DoughnutChart";
 import calcResult from "@/utils/calcResult";
 import useOptionStore from "@/hooks/useOptionStore";
 
@@ -34,7 +34,7 @@ function ResultView() {
     <S.Container>
       <S.Heading>퀴즈 결과</S.Heading>
       <S.DashBoard>
-        <Chart width="220px" result={[win, lose]} />
+        <DoughnutChart width="220px" win={win} lose={lose} />
         <S.Answer>
           <S.Content>
             <S.Label>맞힌 문제</S.Label>

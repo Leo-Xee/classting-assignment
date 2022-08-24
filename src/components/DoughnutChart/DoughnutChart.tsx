@@ -8,23 +8,23 @@ import {
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
-import * as S from "./Chart.style";
+import * as S from "./DoughnutChart.style";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type Props = {
-  result: [number, number];
+  win: number;
+  lose: number;
   width: string;
 };
 
-function Chart({ result, width }: Props) {
-  const [win, lose] = result;
+function Chart({ win, lose, width }: Props) {
   const percent = Math.floor((win / (win + lose)) * 100);
 
   const data: ChartData<"doughnut"> = {
     datasets: [
       {
-        data: result,
+        data: [win, lose],
         backgroundColor: ["#00C896", "#fa5252"],
         borderColor: ["#00C896", "#fa5252"],
         borderWidth: 1,
