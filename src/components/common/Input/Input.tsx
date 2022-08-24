@@ -1,14 +1,12 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useId, ClassAttributes, InputHTMLAttributes } from "react";
+
 import { InputBase, LabelBase } from "../Selector/Selector";
 
-type Props = {
-  type: string;
+type InputProps = ClassAttributes<HTMLInputElement> & InputHTMLAttributes<HTMLInputElement>;
+
+type Props = InputProps & {
   label: string;
-  value: string | number;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  min?: number;
-  max?: number;
 };
 
 const Label = styled.label`
@@ -20,10 +18,12 @@ const Label = styled.label`
 `;
 
 function Input({ type, label, value, onChange, ...props }: Props) {
+  const id = useId();
+
   return (
-    <Label htmlFor={label}>
+    <Label htmlFor={id}>
       {label}
-      <input id={label} type={type} value={value} onChange={onChange} {...props} />
+      <input id={id} type={type} value={value} onChange={onChange} {...props} />
     </Label>
   );
 }
