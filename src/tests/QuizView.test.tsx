@@ -7,8 +7,7 @@ import useOptionStore from "@/hooks/useOptionStore";
 const quiz: Quiz[] = [
   {
     category: "Entertainment: Television",
-    question:
-      "Which of the following awards do Matt Stone and Trey Parker NOT have?",
+    question: "Which of the following awards do Matt Stone and Trey Parker NOT have?",
     correctAnswer: "Oscar",
     selectedAnswer: null,
     choices: ["Oscar", "Emmy", "Tony", "Grammy"],
@@ -25,7 +24,9 @@ describe("<QuizView />", () => {
     render(<QuizView />);
 
     const progressBar = screen.getByLabelText(/퀴즈 진행상태/);
-    const question = screen.getByLabelText(/퀴즈 문제/);
+    const question = screen.getByText(
+      /Which of the following awards do Matt Stone and Trey Parker NOT have?/,
+    );
     const choices = screen.getAllByRole("listitem");
     const button = screen.getByRole("button", { name: /다음 문제/ });
 
