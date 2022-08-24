@@ -18,8 +18,8 @@ function QuizView() {
   }, [page, setStartTime, isReadMode]);
 
   const currentQuiz = quizzes[page];
-  const answer = quizzes[page].correct_answer;
-  const selected = quizzes[page].selected_answer;
+  const answer = quizzes[page].correctAnswer;
+  const selected = quizzes[page].selectedAnswer;
   const isLastQuiz = page === count - 1;
 
   const handleClick = (choice: string) => {

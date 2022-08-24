@@ -5,7 +5,7 @@ const calcResult = (quizData: Quiz[]) => {
   let lose = 0;
 
   quizData.forEach((quiz) => {
-    if (quiz.correct_answer === quiz.selected_answer) {
+    if (quiz.correctAnswer === quiz.selectedAnswer) {
       win += 1;
     } else {
       lose += 1;

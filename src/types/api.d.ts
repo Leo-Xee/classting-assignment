@@ -15,7 +15,7 @@ declare module "api" {
     category: string;
     question: string;
     choices: string[];
-    correct_answer: string;
-    selected_answer: string | null;
+    correctAnswer: string;
+    selectedAnswer: string | null;
   };
 }

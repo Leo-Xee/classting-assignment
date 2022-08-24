@@ -28,8 +28,8 @@ const filter = (data: QuizResponse): Quiz[] => {
         ...quiz.incorrect_answers.map((v) => decodeHTML(v)),
         decodeHTML(quiz.correct_answer),
       ]),
-      correct_answer: decodeHTML(quiz.correct_answer),
-      selected_answer: null,
+      correctAnswer: decodeHTML(quiz.correct_answer),
+      selectedAnswer: null,
     };
   });
   return quizzes;

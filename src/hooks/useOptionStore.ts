@@ -37,12 +37,12 @@ const useOptionStore = create<OptionState>()(
         }),
       setAnswer: (id, answer) =>
         set((state) => {
-          state.quizzes[id].selected_answer = answer;
+          state.quizzes[id].selectedAnswer = answer;
         }),
       resetSelectedAnswers: () =>
         set((state) => {
           state.quizzes.forEach((quiz) => {
-            quiz.selected_answer = null;
+            quiz.selectedAnswer = null;
           });
         }),
       resetOption: () =>

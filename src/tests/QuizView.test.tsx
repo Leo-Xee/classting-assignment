@@ -9,8 +9,8 @@ const quiz: Quiz[] = [
     category: "Entertainment: Television",
     question:
       "Which of the following awards do Matt Stone and Trey Parker NOT have?",
-    correct_answer: "Oscar",
-    selected_answer: null,
+    correctAnswer: "Oscar",
+    selectedAnswer: null,
     choices: ["Oscar", "Emmy", "Tony", "Grammy"],
   },
 ];
