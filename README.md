@@ -4,7 +4,7 @@
 
 <br />
 
-## 🚀 실행 방법 ( [Deploy](http://classting-assignment-pi.vercel.app/) )
+## 🚀 실행 방법
 
 ### 프로젝트 클론 및 의존성 설치
 
